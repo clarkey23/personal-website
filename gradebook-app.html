@@ -6,8 +6,8 @@
     <title>Gradebook App</title>
 </head>
 <body>
-    <p>enter your fictional marks in a test /100 & the marks of some fictional friends. some simple computations will then be done on those marks.</p>
-    <form>
+    <p>Enter your fictional marks in a test /100 & the marks of some fictional friends. some simple computations will then be done on those marks.</p>
+    <form id="gradebook">
         <label for="my-marks">My Marks: </label>
         <input
             type="number"
@@ -61,8 +61,26 @@
         <button type="submit">Generate Computation</button>
 
     </form>
+    <div id="results"></div>
 
     <script> 
+        document.getElementById("gradebook").addEventListener("submit", function(event) {
+            event.preventDefault(); // Stop form from reloading the page
+            let myMarks = Number(document.getElementById("my-marks").value);
+            let friend1 = Number(document.getElementById("friend-1").value);
+            let friend2 = Number(document.getElementById("friend-2").value);
+            let friend3 = Number(document.getElementById("friend-3").value);
+            let friend4 = Number(document.getElementById("friend-4").value);
+            let allMarks = [myMarks, friend1, friend2, friend3, friend4];
+            let avg = getAverage(allMarks);
+            let myGrade = getGrade(myMarks);
+            let passStatus = hasPassingGrade(myMarks) ? "You passed!" : "You failed!";
+            document.getElementById("results").innerHTML = `
+            <p>Friend Average: ${avg.toFixed(2)}</p>
+            <p>Your Grade: ${myGrade}</p>
+            <p>${passStatus}</p>
+    `;
+        });
 
         // function to assign a grade to a score 
             function getGrade(score) {
