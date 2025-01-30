@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gradebook App</title>
+</head>
+<body>
+    <p>enter your fictional marks in a test /100 & the marks of some fictional friends. some simple computations will then be done on those marks.</p>
+    <form>
+        <label for="my-marks">My Marks: </label>
+        <input
+            type="number"
+            id="my-marks"
+            name="my-marks"
+            placeholder="Enter mark"
+            max="100"
+            required
+        >
+        <br><br>
+        <label for="friend-1">Fictional Friend 1's Marks: </label>
+        <input
+            type="number"
+            id="friend-1"
+            name="friend-1"
+            placeholder="Enter mark"
+            max="100"
+            required
+        >
+        <br><br>
+        <label for="friend-2">Fictional Friend 2's Marks: </label>
+        <input
+            type="number"
+            id="friend-2"
+            name="friend-2"
+            placeholder="Enter mark"
+            max="100"
+            required
+        >
+        <br><br>
+        <label for="friend-3">Fictional Friend 3's Marks: </label>
+        <input
+            type="number"
+            id="friend-3"
+            name="friend-3"
+            placeholder="Enter mark"
+            max="100"
+            required
+        >
+        <br><br>
+        <label for="friend-4">Fictional Friend 4's Marks: </label>
+        <input
+            type="number"
+            id="friend-4"
+            name="friend-4"
+            placeholder="Enter mark"
+            max="100"
+            required
+        >
+        <br><br>
+        <button type="submit">Generate Computation</button>
+
+    </form>
+
+    <script> 
+
+        // function to assign a grade to a score 
+            function getGrade(score) {
+                if (score === 100) {
+                return "A++"
+                } else if (score < 100 && score >= 90) {
+                return "A"
+                } else if (score <= 89 && score >= 80) {
+                return "B"
+                } else if (score <= 79 && score >= 70) {
+                return "C"
+                } else if (score <= 69 && score >= 60) {
+                return "D"
+                } else if (score <= 59 && score >= 0) {
+                return "F"
+                }
+                else {
+                return "error"
+                }
+            }
+            
+            console.log(getGrade(70));
+            console.log(getGrade(82));
+            console.log(getGrade(56));
+        
+        // function to get an average of an array of scores 
+            function getAverage(scores) {
+            let sum = 0;
+        
+            for (const score of scores) {
+                sum += score;
+            }
+        
+          return sum / scores.length;
+        }
+        
+        //function to check if it's a passing grade 
+            function hasPassingGrade(score) {
+            if (getGrade(score) === "F") {
+            return false;
+            } else {
+            return true;
+            }
+            }
+        
+        // function to write student a message about the average grade & their grade
+            function studentMsg(totalScores, studentScore) {
+            if (getGrade(studentScore) === "F") {
+                return "Class average: " + getAverage(totalScores) + ". Your grade: " + getGrade(studentScore) + ". You failed the course."
+            } else {
+                return "Class average: " + getAverage(totalScores) + ". Your grade: " + getGrade(studentScore) + ". You passed the course."
+            }
+            }
+            console.log(studentMsg([92, 88, 12, 77, 57, 100, 67, 38, 97, 89], 37));
+        </script>
+</body>
+</html>
